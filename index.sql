@@ -193,14 +193,5 @@ FROM
 INNER JOIN 
     subscription s ON u.SubscriptionID = s.SubscriptionID;
 
---5
-SELECT 
-userInfo.firstName, 
-userInfo.lastName, 
-movie.title, 
-watchHistory.watchDATE
-FROM watchHistory 
-JOIN userInfo ON watchHistory.userID = userInfo.userID 
-JOIN movie ON watchHistory.movieID = movie.movieID
-WHERE watchHistory.completionPercentage = 100;
+
 
