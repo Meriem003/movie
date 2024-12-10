@@ -1,7 +1,12 @@
-CREATE DATABASE users_subscription;
+-- Name: meryam salhi
+-- Email: meryemsalhi590@gmail.com
 
+-- creation database
+
+CREATE DATABASE users_subscription;
 USE users_subscription;
 
+--creation des tableaux
 CREATE TABLE Users (
     USERID INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     FirstName VARCHAR(100) NOT NULL,
@@ -44,6 +49,8 @@ CREATE TABLE Subscription (
     monthlyfee DECIMAL(10,2) NOT NULL
 );
 
+-- foreing key
+
 ALTER TABLE Users
 ADD CONSTRAINT FK_SubscriptionID
 FOREIGN KEY (SubscriptionID) REFERENCES Subscription(SubscriptionID);
@@ -63,6 +70,9 @@ FOREIGN KEY (MOVIEID) REFERENCES movie(MOVIEID);
 ALTER TABLE Watchhistory
 ADD CONSTRAINT FK_watchhistory_userID
 FOREIGN KEY (USERID) REFERENCES Users(USERID);
+
+
+-- insert les données
 
 INSERT INTO Watchhistory (USERID, MOVIEID, WatchDATE, CompletionPercentage)
 VALUES
@@ -161,6 +171,8 @@ VALUES
 ('Premium', 19.99),
 ('Basic', 9.99);
 
+
+-- Les requêtes
 --1
 INSERT INTO movie (titre, genre, releaseYEAR, duration, rating)
 VALUES ('Data Science Adventures', 'Documentary', 2024, 120, '8');
@@ -193,5 +205,41 @@ FROM
 INNER JOIN 
     subscription s ON u.SubscriptionID = s.SubscriptionID;
 
+-- 5
+SELECT 
+    u.USERID,
+    u.FirstName,
+    u.LastName,
+    w.MOVIEID
+FROM 
+    Watchhistory w
+INNER JOIN 
+    Users u 
+ON 
+    w.USERID = u.USERID
+WHERE 
+    w.CompletionPercentage = 100;
+
+-- 6
+SELECT 
+    MOVIEID,
+    titre,
+    duration
+FROM 
+    movie
+ORDER BY 
+    duration DESC
+LIMIT 5;
+
+-- 8
+SELECT 
+    s.Subscriptiontype, 
+    COUNT(u.USERID)
+FROM 
+    Users u
+INNER JOIN 
+    Subscription s ON u.SubscriptionID = s.SubscriptionID
+GROUP BY 
+    s.Subscriptiontype;
 
 
