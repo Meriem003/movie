@@ -231,6 +231,10 @@ ORDER BY
     duration DESC
 LIMIT 5;
 
+-- 7
+
+
+
 -- 8
 SELECT 
     s.Subscriptiontype, 
@@ -243,3 +247,18 @@ GROUP BY
     s.Subscriptiontype;
 
 
+--9
+SELECT
+    movie.titre AS nomFilm,
+    review.rating AS noteFilm
+FROM
+    movie
+INNER JOIN
+    review
+ON
+    movie.movieid = review.movieid
+WHERE
+    review.rating > 4;
+
+
+--10
