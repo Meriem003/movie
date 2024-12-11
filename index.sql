@@ -232,8 +232,17 @@ ORDER BY
 LIMIT 5;
 
 -- 7
-
-
+SELECT 
+    movie.titre,
+    FLOOR(AVG(watchhistory.CompletionPercentage))
+FROM 
+    watchhistory
+INNER JOIN 
+    movie
+ON 
+    movie.MOVIEID = watchhistory.MOVIEID
+GROUP BY 
+    movie.titre;
 
 -- 8
 SELECT 
@@ -249,8 +258,8 @@ GROUP BY
 
 --9
 SELECT
-    movie.titre AS nomFilm,
-    review.rating AS noteFilm
+    movie.titre,
+    review.rating
 FROM
     movie
 INNER JOIN
@@ -259,6 +268,3 @@ ON
     movie.movieid = review.movieid
 WHERE
     review.rating > 4;
-
-
---10
