@@ -247,7 +247,7 @@ GROUP BY
 -- 8
 SELECT 
     s.Subscriptiontype, 
-    COUNT(u.USERID)
+    COUNT(u.USERID) AS users
 FROM 
     Users u
 INNER JOIN 
