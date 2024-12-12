@@ -234,13 +234,13 @@ LIMIT 5;
 -- 7
 SELECT 
     movie.titre,
-    FLOOR(AVG(watchhistory.CompletionPercentage))
-FROM 
-    watchhistory
-INNER JOIN 
+    FLOOR(AVG(watchhistory.CompletionPercentage)) as percentage
+FROM
     movie
-ON 
-    movie.MOVIEID = watchhistory.MOVIEID
+INNER JOIN 
+    watchhistory
+ON
+    movie.MOVIEID=watchhistory.MOVIEID
 GROUP BY 
     movie.titre;
 
